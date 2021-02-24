@@ -1,0 +1,10 @@
+Historique des probleme Notable: 
+21/02/2021 :
+ERROR 1215 (HY000): Impossible d'ajouter des contraintes d'index externe
+
+J'ai resolut le probleme avec stackoverflow et la commande SHOW ENGINE INNODB STATUS;
+
+erreur du au type de l'index de NumRessere dans
+le tableau RESSERRE NumRessere n'étant pas un int
+
+

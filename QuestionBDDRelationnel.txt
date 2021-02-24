@@ -1,0 +1,9 @@
+L’équipe avait envisagé au départ de créer la base de données avec un moteur non relationnel, 
+mais ce choix n'a finalement pas été retenu et s'oriente dorénavant vers 
+le moteur relationnel MySQL. Selon vous quelles sont les 
+raisons qui ont poussé l’équipe à changer de stratégie ?
+
+
+Pour pouvoir relier les données entre elle.
+L'équipe a changer de stratégie car les donner sont relier entre elles et ne sont pas 
+volumineuses.Il est donc plus simple de representé ses relations.

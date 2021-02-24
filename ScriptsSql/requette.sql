@@ -1,0 +1,78 @@
+-- Requêtes d’interrogation de la base de données :
+1.
+SELECT * 
+FROM `potion`;
+
+2.
+SELECT NomCateg 
+FROM `CATEGORIE` 
+WHERE NbPoint = 3;
+
+3.
+SELECT NomVillage 
+FROM VILLAGE 
+WHERE NbHuttes > 35;
+
+4.
+SELECT NumTrophee, DatePrise 
+FROM TROPHEE 
+WHERE DatePrise 
+BETWEEN '2052-05-01 00:00:00' AND '2052-06-06 23:59:59';
+
+5.
+SELECT Nom 
+FROM HABITANT 
+WHERE Nom LIKE 'a%r%';
+
+6.
+SELECT NumHab 
+FROM ABSORBER 
+WHERE NumPotion = 1 OR NumPotion = 3 OR NumPotion = 4
+GROUP BY NumHab;
+
+7.
+SELECT NumTrophee, DatePrise, NomCateg, Nom FROM TROPHEE 
+INNER JOIN CATEGORIE ON TROPHEE.CodeCat = CATEGORIE.CodeCat
+INNER JOIN HABITANT ON TROPHEE.NumPreneur = HABITANT.NumHab;
+
+8.
+SELECT Nom
+FROM HABITANT
+INNER JOIN VILLAGE ON HABITANT.NumVillage = 1
+GROUP BY Nom;
+
+9.
+SELECT Nom
+FROM HABITANT
+INNER JOIN TROPHEE ON HABITANT.NumHab = TROPHEE.NumPreneur
+WHERE CodeCat LIKE 'BLT';
+
+10.
+SELECT Libpotion, Formule, ConstituantPrincipal
+FROM FABRIQUER
+INNER JOIN POTION ON FABRIQUER.NumPotion = POTION.NumPotion
+
+INNER JOIN HABITANT ON FABRIQUER.NumHab = HABITANT.NumHab
+WHERE HABITANT.NumHab = 4;
+
+11.
+SELECT Libpotion
+FROM POTION
+INNER JOIN ABSORBER ON POTION.NumPotion = ABSORBER.NumPotion
+WHERE NumHab = 10
+GROUP BY Libpotion;
+
+12.
+SELECT Nom
+FROM ABSORBER
+INNER JOIN HABITANT ON ABSORBER.NumHab = HABITANT.NumHab
+INNER JOIN FABRIQUER ON ABSORBER.NumPotion = FABRIQUER.NumPotion
+WHERE FABRIQUER.NumHab = 3
+GROUP BY Nom;
+
+13.
+SELECT nom FROM habitant
+INNER JOIN absorber a ON a.numhab = habitant.numhab
+INNER JOIN fabriquer ON fabriquer.numpotion = a.numpotion
+WHERE fabriquer.numhab = (SELECT numhab FROM habitant WHERE nom = 'Amnésix')
+GROUP BY nom;
